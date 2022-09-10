@@ -5,7 +5,7 @@ from base64 import b64encode
 TEMPLATE="""#!/usr/bin/python3
 data='{}'
 from io import BytesIO
-import zipfile, os, shutil, tempfile
+import zipfile, os, shutil, tempfile, sys
 from base64 import b64decode
 import json
 tempdir=tempfile.mkdtemp()
@@ -15,7 +15,7 @@ data=json.load(open(tempdir+"/manifest.json"))
 if os.name not in data["run"]:
     print("This is unsupported on your platform")
 os.chdir(tempdir)
-os.system(data["run"][os.name])
+os.system(data["run"][os.name]+" "+" ".join(sys.argv[1:]))
 shutil.rmtree(tempdir)"""
 
 TEMPLATE_COMPRESSED="""import base64;exit(exec(base64.b64decode({}).decode()))"""
