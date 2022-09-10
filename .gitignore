@@ -1,4 +1,2 @@
-*.zip
-*.zip.base64
-unpack.py
-unpack.compressed.py
+dist
+__pycache__
