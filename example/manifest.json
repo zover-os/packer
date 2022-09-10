@@ -1,5 +1,6 @@
 {
 	"run":{
-		"posix": "sh start.sh"
+		"posix": "sh start.sh",
+		"windows": "start.bat"
 	}
 }
