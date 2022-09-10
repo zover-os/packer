@@ -24,3 +24,5 @@ echo '    print("This is unsupported on your platform")' >> unpack.py
 echo 'os.chdir(tempdir)' >> unpack.py
 echo 'os.system(data["run"][os.name])' >> unpack.py
 echo 'shutil.rmtree(tempdir)' >> unpack.py
+
+echo "import base64;exit(exec(base64.b64decode(b\"$(cat unpack.py | base64 -w 0)\").decode()))" > unpack.compressed.py

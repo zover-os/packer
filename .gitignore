@@ -1,3 +1,3 @@
 *.zip
 *.zip.base64
-unpack.py
+unpack.*
