@@ -4,7 +4,7 @@ Packer is cross platform alternative of appimage
 
 ## usage
 
-current packer can pack app only on linux!<br>
+at current time packer can pack app only on unix :(<br>
 ```code
 ./pack.sh <application dir>
 ```
