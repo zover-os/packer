@@ -9,8 +9,10 @@ zip -r data.zip *
 cd ..
 cat $1/data.zip | base64 -w 0 > data.zip.base64
 
-echo "data='$(cat data.zip.base64)'" > unpack.py
+echo "#!/usr/bin/python3" > unpack.py
+echo "#!/usr/bin/python3" > unpack.compressed.py
 
+echo "data='$(cat data.zip.base64)'" > unpack.py
 echo 'from io import BytesIO' >> unpack.py
 echo 'import zipfile, os, shutil, tempfile' >> unpack.py
 echo 'from base64 import b64decode' >> unpack.py
@@ -25,4 +27,4 @@ echo 'os.chdir(tempdir)' >> unpack.py
 echo 'os.system(data["run"][os.name])' >> unpack.py
 echo 'shutil.rmtree(tempdir)' >> unpack.py
 
-echo "import base64;exit(exec(base64.b64decode(b\"$(cat unpack.py | base64 -w 0)\").decode()))" > unpack.compressed.py
+echo "import base64;exit(exec(base64.b64decode(b\"$(cat unpack.py | base64 -w 0)\").decode()))" >> unpack.compressed.py
