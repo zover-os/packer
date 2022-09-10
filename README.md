@@ -3,10 +3,9 @@
 Packer is cross platform alternative of appimage
 
 ## usage
-
-at current time packer can pack app only on unix :(<br>
+for pack app your need python 3.7+<br>
 ```code
-./pack.sh <application dir>
+python3 pack.py <application dir>
 ```
 
 ## run
