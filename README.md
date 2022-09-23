@@ -11,5 +11,5 @@ python3 pack.py <application dir>
 ## run
 for run packed app your need python 3.7+
 ```code
-python3 unpack.py
+python3 dest/file.py
 ```
