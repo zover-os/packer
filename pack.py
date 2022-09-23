@@ -3,6 +3,8 @@ if len(sys.argv)<2:
     print("usage: {} <directory-for-pack>".format(sys.argv[0]))
     exit(1)
 dir_to_pack=sys.argv[1]
+if not dir_to_pack.endswith("/"):
+    dir_to_pack+="/"
 
 import os
 from pathlib import Path
@@ -16,6 +18,7 @@ if not dtp.exists():
 p=Path("dist")
 if not p.exists():
     os.mkdir("dist")
+
 dtb_name=os.path.dirname(dir_to_pack)
 zipdir(dir_to_pack, f"dist/{dtb_name}.zip")
 ziptob64(f"dist/{dtb_name}.zip", f"dist/{dtb_name}.zip.base64")
