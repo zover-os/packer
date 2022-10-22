@@ -18,7 +18,7 @@ os.chdir(tempdir)
 os.system(data["run"][os.name]+" "+" ".join(sys.argv[1:]))
 shutil.rmtree(tempdir)"""
 
-TEMPLATE_COMPRESSED="""import base64;exit(exec(base64.b64decode({}).decode()))"""
+TEMPLATE_COMPRESSED="""exec(__import__('base64').b64decode({}).decode())"""
 
 def zipdir(directory, filename):
     with zipfile.ZipFile(f"{filename}", 'w', zipfile.ZIP_DEFLATED) as zipf:
