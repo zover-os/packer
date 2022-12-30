@@ -10,6 +10,7 @@ from time import sleep
 from base64 import b64decode
 import json
 tempdir=tempfile.mkdtemp()
+curr_dir=os.getcwd()
 with zipfile.ZipFile(BytesIO(b64decode(data.encode())), "r") as zipf:
     zipf.extractall(tempdir)
 data=json.load(open(tempdir+"/manifest.json"))
@@ -18,7 +19,7 @@ if os.name not in data["run"]:
     sys.exit(1)
 os.chdir(tempdir)
 os.system(data["run"][os.name]+" "+" ".join(sys.argv[1:]))
-sleep(1)
+os.chdir(curr_dir)
 try:
     shutil.rmtree(tempdir)
 except:
