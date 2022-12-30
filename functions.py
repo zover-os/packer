@@ -6,6 +6,7 @@ TEMPLATE="""#!/usr/bin/python3
 data='{}'
 from io import BytesIO
 import zipfile, os, shutil, tempfile, sys
+from time import sleep
 from base64 import b64decode
 import json
 tempdir=tempfile.mkdtemp()
@@ -14,8 +15,10 @@ with zipfile.ZipFile(BytesIO(b64decode(data.encode())), "r") as zipf:
 data=json.load(open(tempdir+"/manifest.json"))
 if os.name not in data["run"]:
     print("This is unsupported on your platform")
+    sys.exit(1)
 os.chdir(tempdir)
 os.system(data["run"][os.name]+" "+" ".join(sys.argv[1:]))
+sleep(1)
 shutil.rmtree(tempdir)"""
 
 TEMPLATE_COMPRESSED="""exec(__import__('base64').b64decode({}).decode())"""
