@@ -19,7 +19,11 @@ if os.name not in data["run"]:
 os.chdir(tempdir)
 os.system(data["run"][os.name]+" "+" ".join(sys.argv[1:]))
 sleep(1)
-shutil.rmtree(tempdir)"""
+try:
+    shutil.rmtree(tempdir)
+except:
+    pass
+"""
 
 TEMPLATE_COMPRESSED="""exec(__import__('base64').b64decode({}).decode())"""
 
