@@ -3,12 +3,10 @@ import zipfile
 from base64 import b64encode
 
 TEMPLATE="""#!/usr/bin/python3
-data='{}'
+import zipfile, os, shutil, tempfile, sys, json
 from io import BytesIO
-import zipfile, os, shutil, tempfile, sys
 from time import sleep
-from base64 import b64decode
-import json
+from base64 import b64decodedata='{}'
 tempdir=tempfile.mkdtemp()
 curr_dir=os.getcwd()
 with zipfile.ZipFile(BytesIO(b64decode(data.encode())), "r") as zipf:
