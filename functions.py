@@ -27,20 +27,21 @@ except:
 TEMPLATE_COMPRESSED="""exec(__import__('base64').b64decode({}).decode())"""
 
 def zipdir(directory, filename):
+    """Zip directory"""
     with zipfile.ZipFile(f"{filename}", 'w', zipfile.ZIP_DEFLATED) as zipf:
         for root, _, files in os.walk(directory):
             for file in files:
-                zipf.write(os.path.join(root,file), 
-                           os.path.relpath(os.path.join(file), 
-                                           os.path.join(directory, '..')))
+                zipf.write(os.path.join(root,file),os.path.relpath(os.path.join(file), os.path.join(directory, '..')))
     return filename
 
 def ziptob64(fromfile, tofile):
-    with open(fromfile, "rb") as ff:
-        with open(tofile, "wb") as tf:
-            tf.write(b64encode(ff.read()))
+    """convert zip to base64"""
+    with open(fromfile, "rb") as from_file:
+        with open(tofile, "wb") as to_file:
+            to_file.write(b64encode(from_file.read()))
 
 def genunpackfile(unpackfile, zipb64):
+    """generate unpack.py"""
     b64data=""
     with open(zipb64, "r") as f:
         b64data=f.read()
@@ -49,6 +50,7 @@ def genunpackfile(unpackfile, zipb64):
         f.write(data)
 
 def gencompressedunpackfile(compressedunpackfile, unpackfile):
+     """compress unpack.py"""
     with open(unpackfile, "r") as f:
         with open(compressedunpackfile, "w") as cf:
             cf.write(TEMPLATE_COMPRESSED.format(b64encode(f.read().encode())))
