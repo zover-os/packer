@@ -1,15 +1,15 @@
 import sys
+import os
+from pathlib import Path
+
+from functions import zipdir, ziptob64, genunpackfile, gencompressedunpackfile
+
 if len(sys.argv)<2:
     print("usage: {} <directory-for-pack>".format(sys.argv[0]))
     exit(1)
 dir_to_pack=sys.argv[1]
 if not dir_to_pack.endswith("/"):
     dir_to_pack+="/"
-
-import os
-from pathlib import Path
-
-from functions import zipdir, ziptob64, genunpackfile, gencompressedunpackfile
 
 dtp=Path(dir_to_pack)
 if not dtp.exists():
