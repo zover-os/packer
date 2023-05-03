@@ -6,22 +6,22 @@ from pathlib import Path
 from functions import zipdir, ziptob64, genunpackfile, gencompressedunpackfile
 
 if len(sys.argv)<2:
-    print("usage: {} <directory-for-pack>".format(sys.argv[0]))
+    print(f"usage: {sys.argv[0]} <directory-for-pack>")
     sys.exit(1)
-dir_pack_str=sys.argv[1]
-if not dir_pack_str.endswith("/"):
-    dir_pack_str+="/"
+dirPackStr=sys.argv[1]
+if not dirPackStr.endswith("/"):
+    dirPackStr+="/"
 
-dir_pack=Path(dir_pack_str)
-if not dir_pack.exists():
-    print("directory {} don't exists".format(dir_pack_str))
+dirPack=Path(dirPackStr)
+if not dirPack.exists():
+    print("directory {} don't exists".format(dirPackStr))
 
 dist=Path("dist")
 if not dist.exists():
     os.mkdir("dist")
 
-dir_pack_name=os.path.dirname(dir_pack)
-zipdir(dir_to_pack, f"dist/{dir_pack_name}.zip")
-ziptob64(f"dist/{dir_pack_name}.zip", f"dist/{dir_pack_name}.zip.base64")
-genunpackfile(f"dist/{dir_pack_name}.py", f"dist/{dir_pack_name}.zip.base64")
-gencompressedunpackfile(f"dist/{dir_pack_name}.compressed.py", f"dist/{dir_pack_name}.py")
+dirPackName=os.path.dirname(dirPack)
+zipdir(dirPackStr, f"dist/{dirPackName}.zip")
+ziptob64(f"dist/{dirPackName}.zip", f"dist/{dirPackName}.zip.base64")
+genunpackfile(f"dist/{dirPackName}.py", f"dist/{dirPackName}.zip.base64")
+gencompressedunpackfile(f"dist/{dirPackName}.compressed.py", f"dist/{dirPackName}.py")
