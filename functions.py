@@ -4,7 +4,7 @@ import zipfile
 from base64 import b64encode
 
 TEMPLATE="""#!/usr/bin/python3
-\"\"\"Packer executable\"\"\"
+\"\"\"Packer executable\"\"\" # pylint: disable=line-too-long
 import zipfile
 import os
 import shutil
