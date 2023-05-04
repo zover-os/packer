@@ -50,7 +50,7 @@ def genunpackfile(unpackfile, zipb64):
         f.write(data)
 
 def gencompressedunpackfile(compressedunpackfile, unpackfile):
-     """compress unpack.py"""
+    """compress unpack.py"""
     with open(unpackfile, "r") as unpack_file:
         with open(compressedunpackfile, "w") as compressed_unpack_file:
             compressed_unpack_file.write(TEMPLATE_COMPRESSED.format(b64encode(unpack_file.read().encode())))
