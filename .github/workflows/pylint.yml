@@ -24,4 +24,5 @@ jobs:
         rm dist/example.compressed.py
     - name: Analysing the code with pylint
       run: |
-        pylint *.py dist/*.py
+        pylint *.py
+        pylint dist/*.py
