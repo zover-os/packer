@@ -18,6 +18,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install pylint
+    - name: Building example
+      run: |
+        python pack.py example
+        rm dist/example.compressed.py
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files '*.py')
+        pylint *.py dist/*.py

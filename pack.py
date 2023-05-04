@@ -9,7 +9,7 @@ if len(sys.argv)<2:
     print(f"usage: {sys.argv[0]} <directory-for-pack>")
     sys.exit(1)
 
-if not sys.argv[1]:
+if not sys.argv[1].endswith("/"):
     sys.argv[1]+="/"
 
 dirPack=Path(sys.argv[1])
@@ -20,7 +20,7 @@ dist=Path("dist")
 if not dist.exists():
     os.mkdir("dist")
 
-dirPackName=os.path.dirname(dirPack)
+dirPackName=os.path.dirname(sys.argv[1])
 zipdir(sys.argv[1], f"dist/{dirPackName}.zip")
 ziptob64(f"dist/{dirPackName}.zip", f"dist/{dirPackName}.zip.base64")
 genunpackfile(f"dist/{dirPackName}.py", f"dist/{dirPackName}.zip.base64")
